@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Booi | URL Shotener</title>
+  </head>
+  <body class="w-full max-w-[55rem] mx-auto p-4 bg-teal-700">
+    <h1 class="text-rose-600 text-2xl font-bold text-center">
+      BOOi | URL SHOTENER
+    </h1>
+    <form
+      action="/short"
+      method="POST"
+      class="mt-6 w-full max-w-[500px] mx-auto flex"
+    >
+      <div class="bg-teal-300 w-full flex gap-1 items-center">
+        <label for="fullURL" class="p-2"> URL</label>
+        <input
+          type="url"
+          name="fullURL"
+          id="fullURL"
+          class="w-full focus:outline-0 bg-transparent"
+        />
+      </div>
+      <button class="bg-rose-600 p-2">Shorten</button>
+    </form>
+
+    <table class="mt-6 w-full max-w-[500px] mx-auto">
+      <thead class="border-b-2 border-rose-500">
+        <tr class="[&>th]:text-left">
+          <th>Full URL</th>
+          <th class="w-[300px]">Short URL</th>
+          <th>Clicks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% shortURLs.forEach(shortURL => { %>
+        <tr
+          class="[&>td>a]:text-teal-950 [&>td>a]:underline [&>td>a]:underline-offset-2"
+        >
+          <td class="">
+            <a href="<%= shortURL.full %>"><%= shortURL.full %></a>
+          </td>
+          <td class="ml-4">
+            <a href="<%= shortURL.short %>"><%= shortURL.short %></a>
+          </td>
+          <td class="text-center"><%= shortURL.clicks %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>
